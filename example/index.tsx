@@ -2,9 +2,17 @@ import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { MetricHistoryViewer } from '../.';
-import MetricHistoryApiMock from '../test/MetricHistoryApiMock';
+import { Dashboard } from '../.';
+import {
+  MetricHistoryGetterMock,
+  ProjectsGetterMock,
+  VersionMetricsGetterMock,
+} from '../test/apiMocks';
 
 ReactDOM.render(
-  <MetricHistoryViewer metricHistoryApi={new MetricHistoryApiMock()} />,
+  <Dashboard
+    projectsGetter={new ProjectsGetterMock()}
+    metricHistoryGetter={new MetricHistoryGetterMock()}
+    versionMetricsGetter={new VersionMetricsGetterMock()}
+  />,
   document.getElementById('root'));

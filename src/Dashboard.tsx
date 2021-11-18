@@ -15,6 +15,7 @@ export interface DashboardProps {
   metricHistoryGetter: MetricHistoryGetter;
   versionMetricsGetter: VersionMetricsGetter;
   projectKey?: Project['key'];
+  style?: React.CSSProperties;
 }
 
 export default function Dashboard(props : DashboardProps) {
@@ -23,10 +24,11 @@ export default function Dashboard(props : DashboardProps) {
     metricHistoryGetter,
     versionMetricsGetter,
     projectKey: projectKeyProp,
+    style,
   } = props;
   const { projectKey, setProjectKey, metrics } = useDashboard(props);
   return (
-    <div style={styles.container}>
+    <div style={{ ...styles.container, ...style }}>
       {projectKeyProp
         ? null
         : <ProjectSelect

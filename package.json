@@ -47,7 +47,7 @@
     }
   ],
   "devDependencies": {
-    "@evoqua/types": "https://github.com/jlopezg8/evoqua-types.git#3b3b6a817bd28c6c51724c08f6682404e5d14c7c",
+    "@evoqua/types": "https://github.com/jlopezg8/evoqua-types.git#a46a9209c279b01e2e4ceaaf16cc322e367498e2",
     "@size-limit/preset-small-lib": "^5.0.5",
     "@types/react": "^17.0.27",
     "@types/react-dom": "^17.0.9",

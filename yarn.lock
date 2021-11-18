@@ -998,9 +998,9 @@
   resolved "https://registry.npmjs.org/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
-"@evoqua/types@https://github.com/jlopezg8/evoqua-types.git#5388a0daced84828e69c75f453efdffd8e0caa91":
+"@evoqua/types@https://github.com/jlopezg8/evoqua-types.git#a46a9209c279b01e2e4ceaaf16cc322e367498e2":
   version "1.0.0"
-  resolved "https://github.com/jlopezg8/evoqua-types.git#5388a0daced84828e69c75f453efdffd8e0caa91"
+  resolved "https://github.com/jlopezg8/evoqua-types.git#a46a9209c279b01e2e4ceaaf16cc322e367498e2"
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"

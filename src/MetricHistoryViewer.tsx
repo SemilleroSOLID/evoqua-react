@@ -1,14 +1,17 @@
 import { MetricHistoryGetter } from '@evoqua/types/api';
 import { Metric, MetricHistory, Project } from '@evoqua/types/models';
 import * as React from 'react';
+import { MultiValue } from 'react-select';
 import AsyncSelect from 'react-select/async';
 
-import MetricHistoryPlot from './MetricHistoryPlot';
+import GridMetricsHistoryPlots from './GridMetricsHistoryPlots';
+//import MetricHistoryPlot from './MetricHistoryPlot';
 
 interface MetricHistoryViewerProps {
   metricHistoryGetter: MetricHistoryGetter;
   projectKey: Project['key'];
 }
+
 
 export default function MetricHistoryViewer(props: MetricHistoryViewerProps) {
   const { metricHistoryGetter, projectKey } = props;
@@ -21,7 +24,8 @@ export default function MetricHistoryViewer(props: MetricHistoryViewerProps) {
         setMetric={setMetric}
       />
       {metricHistory &&
-        <MetricHistoryPlot metricHistory={metricHistory} style={styles.plot} />
+        <GridMetricsHistoryPlots metricsHistory={metricHistory} />
+        
       }
     </div>
   );
@@ -31,12 +35,31 @@ function useMetricHistoryViewer(
   { metricHistoryGetter, projectKey }: MetricHistoryViewerProps
 ) {
   const [metricHistory, setMetricHistory] =
-    React.useState<MetricHistory | undefined>();
+    React.useState<MetricHistory[]>();
 
-  const setMetric = React.useCallback((metric: Metric) => {
-    metricHistoryGetter
-      .getMetricHistory(projectKey, metric)
-      .then(setMetricHistory);
+  const setMetric = React.useCallback((metric: MultiValue<Metric>) => {
+
+    let metricHistoryaux: MetricHistory[] = [];
+
+    const funt = async () => {
+      for (let index = 0; index < metric.length; index++) {
+        metricHistoryGetter
+          .getMetricHistory(projectKey, metric[index])
+          .then(metricHistoryNew => {
+            metricHistoryaux.push(metricHistoryNew);
+          });
+      }
+
+    }
+
+    funt().then(() => {
+      //console.log(metricHistoryaux);
+
+      setMetricHistory(metricHistoryaux)
+    })
+
+
+
   }, [projectKey]);
 
   React.useEffect(() => setMetricHistory(undefined), [projectKey]);
@@ -44,18 +67,20 @@ function useMetricHistoryViewer(
   return { setMetric, metricHistory };
 }
 
+
 interface MetricSelectProps {
   getMetrics: MetricHistoryGetter['getMetrics'];
   projectKey: Project['key'];
-  setMetric: (metric: Metric) => void;
+  setMetric: (metric: MultiValue<Metric>) => void;
 }
 
 function MetricSelect(
-  { getMetrics, projectKey, setMetric } : MetricSelectProps
+  { getMetrics, projectKey, setMetric }: MetricSelectProps
 ) {
   return (
     <AsyncSelect
       placeholder="Métrica"
+      isMulti
       loadOptions={getMetrics}
       defaultOptions
 
@@ -68,6 +93,7 @@ function MetricSelect(
 
       getOptionValue={metric => metric.key}
       getOptionLabel={metric => metric.name}
+
       onChange={metric => metric && setMetric(metric)}
     />
   );

@@ -24,6 +24,7 @@ export default function MetricHistoryPlot(
           title: { text: 'Versión' },
         },
         yaxis: { title: { text: metric } },
+        autosize:true
       }}
       config={{
         locale: 'es',

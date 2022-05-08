@@ -8,7 +8,7 @@ export default class MetricHistoryGetterMock implements MetricHistoryGetter {
       versions: ['0.1.0', '1.0.0', '1.1.0', '1.1.1', '1.2.0'],
       values:   [    400,     800,     200,     350,     450],
     });
-  };
+  }
 
   getMetrics(_projectKey: Project['key']) {
     return Promise.resolve([
@@ -16,5 +16,5 @@ export default class MetricHistoryGetterMock implements MetricHistoryGetter {
       { key:  'sqale_index', name:         'Technical Debt' },
       { key: 'sqale_rating', name: 'Maintainability Rating' },
     ]);
-  };
+  }
 }

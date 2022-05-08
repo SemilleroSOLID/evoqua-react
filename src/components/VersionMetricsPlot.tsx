@@ -1,5 +1,5 @@
 import { VersionMetrics } from '@evoqua/types/models';
-import * as React from 'react';
+import React from 'react';
 import Plot from 'react-plotly.js';
 
 interface VersionMetricsPlotProps {
@@ -7,7 +7,7 @@ interface VersionMetricsPlotProps {
   style?: React.CSSProperties;
 }
 
-export default function VersionMetricsPlot(
+export default React.memo(function VersionMetricsPlot(
   { versionMetrics, style } : VersionMetricsPlotProps
 ) {
   const { version, metrics, values } = versionMetrics;
@@ -19,7 +19,9 @@ export default function VersionMetricsPlot(
         theta: metrics,
         r: values,
       }]}
-      layout={{ title: `Métricas en la versión ${version}` }}
+      layout={{
+        title: `Métricas en la versión ${version}`,
+      }}
       config={{
         locale: 'es',
         responsive: true,
@@ -27,4 +29,4 @@ export default function VersionMetricsPlot(
       style={style}
     />
   );
-}
+});

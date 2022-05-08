@@ -7,7 +7,7 @@ import {
   ProjectsGetterMock,
   MetricHistoryGetterMock,
   VersionMetricsGetterMock,
-} from './apiMocks';
+} from './api-mocks';
 
 describe('it', () => {
   it('renders without crashing', () => {
@@ -20,7 +20,8 @@ describe('it', () => {
           metricHistoryGetter={new MetricHistoryGetterMock()}
           versionMetricsGetter={new VersionMetricsGetterMock()}
         />,
-        div);
+        div
+      );
     });
     act(() => { ReactDOM.unmountComponentAtNode(div); });
   });

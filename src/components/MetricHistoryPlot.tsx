@@ -1,5 +1,5 @@
 import { MetricHistory } from '@evoqua/types/models';
-import * as React from 'react';
+import React from 'react';
 import Plot from 'react-plotly.js';
 
 interface MetricHistoryPlotProps {
@@ -7,7 +7,7 @@ interface MetricHistoryPlotProps {
   style?: React.CSSProperties;
 }
 
-export default function MetricHistoryPlot(
+export default React.memo(function MetricHistoryPlot(
   { metricHistory, style } : MetricHistoryPlotProps
 ) {
   const { metric, versions, values } = metricHistory;
@@ -21,9 +21,15 @@ export default function MetricHistoryPlot(
       layout={{
         title: `${metric} por versión`,
         xaxis: {
-          title: { text: 'Versión' },
+          title: {
+            text: 'Versión',
+          },
         },
-        yaxis: { title: { text: metric } },
+        yaxis: {
+          title: {
+            text: metric,
+          },
+        },
       }}
       config={{
         locale: 'es',
@@ -32,4 +38,4 @@ export default function MetricHistoryPlot(
       style={style}
     />
   );
-}
+});

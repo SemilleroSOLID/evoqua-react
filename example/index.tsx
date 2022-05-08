@@ -7,7 +7,7 @@ import {
   MetricHistoryGetterMock,
   ProjectsGetterMock,
   VersionMetricsGetterMock,
-} from '../test/apiMocks';
+} from '../test/api-mocks';
 
 ReactDOM.render(
   <Dashboard
@@ -15,4 +15,5 @@ ReactDOM.render(
     metricHistoryGetter={new MetricHistoryGetterMock()}
     versionMetricsGetter={new VersionMetricsGetterMock()}
   />,
-  document.getElementById('root'));
+  document.getElementById('root')
+);

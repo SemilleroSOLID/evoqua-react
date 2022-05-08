@@ -1,20 +1,22 @@
 import { MetricHistoryGetter } from '@evoqua/types/api';
 import { Metric, MetricHistory, Project } from '@evoqua/types/models';
-import * as React from 'react';
-import AsyncSelect from 'react-select/async';
+import React from 'react';
 
+import { Styles } from '../types';
 import MetricHistoryPlot from './MetricHistoryPlot';
+import MetricSelect from './MetricSelect';
 
 interface MetricHistoryViewerProps {
   metricHistoryGetter: MetricHistoryGetter;
   projectKey: Project['key'];
+  style?: React.CSSProperties;
 }
 
 export default function MetricHistoryViewer(props: MetricHistoryViewerProps) {
-  const { metricHistoryGetter, projectKey } = props;
+  const { metricHistoryGetter, projectKey, style } = props;
   const { setMetric, metricHistory } = useMetricHistoryViewer(props);
   return (
-    <div style={styles.container}>
+    <div style={{ ...styles.container, ...style }}>
       <MetricSelect
         getMetrics={metricHistoryGetter.getMetrics.bind(metricHistoryGetter)}
         projectKey={projectKey}
@@ -30,55 +32,25 @@ export default function MetricHistoryViewer(props: MetricHistoryViewerProps) {
 function useMetricHistoryViewer(
   { metricHistoryGetter, projectKey }: MetricHistoryViewerProps
 ) {
-  const [metricHistory, setMetricHistory] =
-    React.useState<MetricHistory | undefined>();
+  const [metricHistory, setMetricHistory] = React.useState<MetricHistory>();
 
   const setMetric = React.useCallback((metric: Metric) => {
     metricHistoryGetter
       .getMetricHistory(projectKey, metric)
       .then(setMetricHistory);
-  }, [projectKey]);
+  }, [metricHistoryGetter, projectKey]);
 
   React.useEffect(() => setMetricHistory(undefined), [projectKey]);
-
+  
   return { setMetric, metricHistory };
 }
 
-interface MetricSelectProps {
-  getMetrics: MetricHistoryGetter['getMetrics'];
-  projectKey: Project['key'];
-  setMetric: (metric: Metric) => void;
-}
-
-function MetricSelect(
-  { getMetrics, projectKey, setMetric } : MetricSelectProps
-) {
-  return (
-    <AsyncSelect
-      placeholder="Métrica"
-      loadOptions={getMetrics}
-      defaultOptions
-
-      // How to force reload of options? · Issue #1581 · JedWatson/react-select
-      // https://github.com/JedWatson/react-select/issues/1581#issuecomment-408625770
-      key={projectKey}
-      // cacheOptions doc is misleading
-      // https://github.com/JedWatson/react-select/issues/1581#issuecomment-459728301
-      cacheOptions={projectKey}
-
-      getOptionValue={metric => metric.key}
-      getOptionLabel={metric => metric.name}
-      onChange={metric => metric && setMetric(metric)}
-    />
-  );
-}
-
-const styles: { [key: string]: React.CSSProperties } = {
+const styles: Styles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
   },
   plot: {
-    flexGrow: 1,
+    flex: 'auto',
   },
-}
+};

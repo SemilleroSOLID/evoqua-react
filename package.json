@@ -47,7 +47,7 @@
     }
   ],
   "devDependencies": {
-    "@evoqua/types": "https://github.com/jlopezg8/evoqua-types.git#a46a9209c279b01e2e4ceaaf16cc322e367498e2",
+    "@evoqua/types": "https://github.com/SemilleroSOLID/evoqua-types.git#588296c6fe016358733044d642984152f39bcac6",
     "@size-limit/preset-small-lib": "^5.0.5",
     "@types/react": "^17.0.27",
     "@types/react-dom": "^17.0.9",
@@ -70,17 +70,17 @@
       "./jest.setup.js"
     ]
   },
-  "description": "Visualizador de la evolución de métricas de un software basado en tubos de kiviat",
+  "description": "Componentes gráficos de evoqua, un visualizador de la evolución de la calidad de diseño de un software basado en tubos de kiviat, implementados en React.",
   "directories": {
     "example": "example",
     "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jlopezg8/evoqua-react.git"
+    "url": "git+https://github.com/SemilleroSOLID/evoqua-react.git"
   },
   "bugs": {
-    "url": "https://github.com/jlopezg8/evoqua-react/issues"
+    "url": "https://github.com/SemilleroSOLID/evoqua-react/issues"
   },
-  "homepage": "https://github.com/jlopezg8/evoqua-react#readme"
+  "homepage": "https://github.com/SemilleroSOLID/evoqua-react#readme"
 }

@@ -22,7 +22,7 @@ export default class VersionMetricsGetterMock implements VersionMetricsGetter {
         24,
       ],
     });
-  };
+  }
 
   getVersions(_projectKey: Project['key']) {
     return Promise.resolve([
@@ -32,5 +32,5 @@ export default class VersionMetricsGetterMock implements VersionMetricsGetter {
       '2021-05-10T09:42:24-0500',
       '2021-05-11T09:42:24-0500',
     ]);
-  };
+  }
 }

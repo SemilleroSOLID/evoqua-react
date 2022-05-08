@@ -7,5 +7,5 @@ export default class ProjectsGetterMock implements ProjectsGetter {
       { key: 'project2', name: 'Project 2' },
       { key: 'project3', name: 'Project 3' },
     ]);
-  };
+  }
 }

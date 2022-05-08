@@ -1,10 +1,8 @@
-# TSDX React User Guide
+# evoqua-react
 
-Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
+Componentes gráficos de _evoqua_, un visualizador de la evolución de la calidad de diseño de un software basado en tubos de kiviat, implementados en React.
 
-> This TSDX setup is meant for developing React component libraries (not apps!) that can be published to NPM. If you’re looking to build a React-based app, you should use `create-react-app`, `razzle`, `nextjs`, `gatsby`, or `react-static`.
-
-> If you’re new to TypeScript and React, checkout [this handy cheatsheet](https://github.com/sw-yx/react-typescript-cheatsheet/)
+Cabe resaltar que este repositorio no contiene una app para ejecutar, dado que se pretende que los componentes gráficos sean reutilizables, sin importar el analizador a usar o el entorno de ejecución de la app. Para esto se proveen dos repositorios aparte, `@evoqua/react-app` y `@evoqua/sonarqube-plugin`, que contienen una app React y un plugin de SonarQube respectivamente, ambos haciendo uso del analizador de SonarQube.
 
 ## Commands
 
@@ -75,15 +73,6 @@ TSDX uses [Rollup](https://rollupjs.org) as a bundler and generates multiple rol
 ### TypeScript
 
 `tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
-
-## Continuous Integration
-
-### GitHub Actions
-
-Two actions are added by default:
-
-- `main` which installs deps w/ cache, lints, tests, and builds on all pushes against a Node and OS matrix
-- `size` which comments cost comparison of your library on every pull request using [`size-limit`](https://github.com/ai/size-limit)
 
 ## Optimizations
 
